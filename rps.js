@@ -15,42 +15,67 @@ function computerPlay(){
 }
 
 
-// function to play one round of the game
-function playRound(user, computer) {
+// function to decide the winner of a round 1= playerwin, 2= computerwin 3= tie
+function decideWinner(user, computer) {
     let roundOutcome;
         if (user === 'rock' && computer === 'scissors'){
-            roundOutcome = 'Rock beats Scissors! you win!';
+            roundOutcome = 1;
         }else if (user === computer){
-            roundOutcome = 'It´s a tie!';
+            roundOutcome = 3;
         }else if (user === 'rock' && computer === 'paper'){
-            roundOutcome = 'Paper beats rock! Computer wins!';
+            roundOutcome = 2;
         }else if (user === 'paper' && computer === 'rock'){
-            roundOutcome = 'Paper beats rock! You win!';
+            roundOutcome = 1;
         }else if (user === 'paper' && computer === 'scissors'){
-            roundOutcome = 'Scissors beat Paper! Computer wins!';
+            roundOutcome = 2;
         }else if (user === 'scissors' && computer === 'rock'){
-            roundOutcome = 'Rock beats Scissors! Computer wins!';
+            roundOutcome = 2;
         }else if (user === 'scissors' && computer === 'paper'){
-            roundOutcome = 'Scissors beat paper! You win!';
+            roundOutcome = 1;
         }
         return roundOutcome;
 }
 
 
-let userinput = prompt('Choose rock, paper or scissors!').toLowerCase();
+let playerWin = 0;
+let computerWin = 0;
+let gamesPlayed = 0;
 
-alert(playRound(userinput, computerPlay()))
-console.log(game())
+//Function to play one round of the game
+function playRound(userInput, computerInput){
+
+    let winner = decideWinner(userinput, computerInput);
+    if (winner === 1) {
+      playerWin++;
+  } else if (winner === 2) {
+      computerWin++;
+  } else if(winner === 3){
+      computerWin++;
+      playerWin++;
+  }
+  gamesPlayed++;
+ /* console.log(`playerwin is ${playerWin} computerwin is ${computerWin}`) <-- for testing*/
+}
+
+// function to play 5 rounds of the game.
+function game(){
+    let userPrompt = prompt('Choose rock, paper or scissors!').toLowerCase();
+    let computerOutcome = computerPlay();
+}
 
 
+/*alert(decideWinner(userinput, computerPlay())) */
+console.log(`playerwin is ${playerWin} computerwin is ${computerWin}`)
 
+let userPrompt = prompt('Choose rock, paper or scissors!').toLowerCase();
+let computerOutcome = computerPlay();
 
 
 
 
 /*
-// function to play one round of the game
-function playRound(user, computer) {
+// function to play one round of the playRound
+function decideWinner(user, computer) {
     let roundOutcome;
     // Makes the player choose either rock paper or scissors using a prompt
     let userinput = prompt('Choose rock, paper or scissors!').toLowerCase();
