@@ -36,7 +36,7 @@ function decideWinner(user, computer) {
         return roundOutcome;
 }
 
-
+// variables to hold the score, and announce the winner
 let playerWin = 0;
 let computerWin = 0;
 let announce;
@@ -55,58 +55,38 @@ function playRound(userInput, computerInput){
       playerWin++;
   }
   return winner;
- /* console.log(`playerwin is ${playerWin} computerwin is ${computerWin}`) <-- for testing*/
 }
 
 // function to play 5 rounds of the game.
 function game(){
-    for(let i = 0; i < 5; i++){
-    let userPrompt = prompt('Choose rock, paper or scissors!').toLowerCase();
-    let computerOutcome = computerPlay();
-    let oneRound = playRound(userPrompt, computerOutcome);
-    
-    if (oneRound === 1) {
-        announce = `${userPrompt} beats ${computerOutcome} you win!`;
-    } else if (oneRound === 2) {
-        announce = `${computerOutcome} beats ${userPrompt} Computer wins!`;
-    } else if (oneRound === 3){
-        announce = 'It´s a tie!';
-    }
-    alert(announce) 
+    for(let i = 0; i <= 5; i++){
+        if(i < 5){
+            let userPrompt = prompt('Choose rock, paper or scissors!').toLowerCase();
+            let computerOutcome = computerPlay();
+            let oneRound = playRound(userPrompt, computerOutcome);
+                if(['rock', 'paper', 'scissors'].includes(userPrompt)){
+                    if (oneRound === 1) {
+                        announce = `${userPrompt} beats ${computerOutcome} you win!`;
+                    } else if (oneRound === 2) {
+                        announce = `${computerOutcome} beats ${userPrompt} Computer wins!`;
+                    } else if (oneRound === 3){
+                        announce = 'It´s a tie!';
+                    } 
+                    alert(announce) 
+                } else {
+                    alert('Did you spell it correctly? please choose rock, paper or scissors');
+                    i--;
+                }
+        }else {
+            if(computerWin < playerWin){
+                alert(`You won the game! the final score was:\nYou: ${playerWin}\nComputer: ${computerWin}`)
+            } else {
+                alert(`The computer won the game! the final score was:\nYou: ${playerWin}\nComputer: ${computerWin}`)
+            }
+        }
     }
     
 }
 
-
-
-
-/*alert(decideWinner(userinput, computerPlay())) */
-
-
-
-
-
-
-/*
-// function to play one round of the playRound
-function decideWinner(user, computer) {
-    let roundOutcome;
-    // Makes the player choose either rock paper or scissors using a prompt
-    let userinput = prompt('Choose rock, paper or scissors!').toLowerCase();
-        if (user === 'rock' && computer === 'scissors'){
-            roundOutcome = 'Rock beats Scissors! you win!';
-        }else if (user === computer){
-            roundOutcome = 'It´s a tie!';
-        }else if (user === 'rock' && computer === 'paper'){
-            roundOutcome = 'Paper beats rock! Computer wins!';
-        }else if (user === 'paper' && computer === 'rock'){
-            roundOutcome = 'Paper beats rock! You win!';
-        }else if (user === 'paper' && computer === 'scissors'){
-            roundOutcome = 'Scissors beat Paper! Computer wins!';
-        }else if (user === 'scissors' && computer === 'rock'){
-            roundOutcome = 'Rock beats Scissors! Computer wins!';
-        }else if (user === 'scissors' && computer === 'paper'){
-            roundOutcome = 'Scissors beat paper! You win!';
-        }
-        return roundOutcome;
-} */
+// starts the game when opening the index.html in browser
+game();
