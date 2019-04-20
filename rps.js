@@ -39,14 +39,13 @@ function decideWinner(user, computer) {
 
 let playerWin = 0;
 let computerWin = 0;
-let gamesPlayed = 0;
 let announce;
 
 
 //Function to play one round of the game
 function playRound(userInput, computerInput){
 
-    let winner = decideWinner(userinput, computerInput);
+    let winner = decideWinner(userInput, computerInput);
     if (winner === 1) {
       playerWin++;
   } else if (winner === 2) {
@@ -55,18 +54,17 @@ function playRound(userInput, computerInput){
       computerWin++;
       playerWin++;
   }
-  gamesPlayed++;
   return winner;
  /* console.log(`playerwin is ${playerWin} computerwin is ${computerWin}`) <-- for testing*/
 }
 
 // function to play 5 rounds of the game.
 function game(){
-    do{
+    for(let i = 0; i = 5; i++){
     let userPrompt = prompt('Choose rock, paper or scissors!').toLowerCase();
     let computerOutcome = computerPlay();
     let oneRound = playRound(userPrompt, computerOutcome);
-    }
+    
     if (oneRound === 1) {
         announce = `${userPrompt} beats ${computerOutcome} you win!`;
     } else if (oneRound === 2) {
@@ -75,7 +73,8 @@ function game(){
         announce = 'It´s a tie!';
     }
     alert(announce) 
-    while(gamesPlayed <= 5);
+    }
+    
 }
 
 
