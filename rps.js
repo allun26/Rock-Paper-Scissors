@@ -65,21 +65,20 @@ function game(){
     do{
     let userPrompt = prompt('Choose rock, paper or scissors!').toLowerCase();
     let computerOutcome = computerPlay();
-    playRound(userPrompt, computerOutcome)
     let oneRound = playRound(userPrompt, computerOutcome);
     }
-    
+    if (oneRound === 1) {
+        announce = `${userPrompt} beats ${computerOutcome} you win!`;
+    } else if (oneRound === 2) {
+        announce = `${computerOutcome} beats ${userPrompt} Computer wins!`;
+    } else if (oneRound === 3){
+        announce = 'It´s a tie!';
+    }
+    alert(announce) 
     while(gamesPlayed <= 5);
+}
 
-}
-if (oneRound === 1) {
-    announce = `${userPrompt} beats ${computerOutcome} you win!`;
-} else if (oneRound === 2) {
-    announce = `${computerOutcome} beats ${userPrompt} Computer wins!`;
-} else if (oneRound === 3){
-    announce = 'It´s a tie!';
-}
-alert(announce) 
+
 
 
 /*alert(decideWinner(userinput, computerPlay())) */
