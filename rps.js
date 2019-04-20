@@ -41,7 +41,7 @@ let playerWin = 0;
 let computerWin = 0;
 let gamesPlayed = 0;
 let announce;
-let oneRound = playRound(userPrompt, computerOutcome);
+
 
 //Function to play one round of the game
 function playRound(userInput, computerInput){
@@ -65,7 +65,8 @@ function game(){
     do{
     let userPrompt = prompt('Choose rock, paper or scissors!').toLowerCase();
     let computerOutcome = computerPlay();
-    oneRound;
+    playRound(userPrompt, computerOutcome)
+    let oneRound = playRound(userPrompt, computerOutcome);
     }
     
     while(gamesPlayed <= 5);
