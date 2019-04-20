@@ -60,7 +60,7 @@ function playRound(userInput, computerInput){
 
 // function to play 5 rounds of the game.
 function game(){
-    for(let i = 0; i = 5; i++){
+    for(let i = 0; i < 5; i++){
     let userPrompt = prompt('Choose rock, paper or scissors!').toLowerCase();
     let computerOutcome = computerPlay();
     let oneRound = playRound(userPrompt, computerOutcome);
