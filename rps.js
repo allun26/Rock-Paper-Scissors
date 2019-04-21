@@ -50,15 +50,13 @@ function playRound(userInput, computerInput){
       playerWin++;
   } else if (winner === 2) {
       computerWin++;
-  } else if(winner === 3){
-      computerWin++;
-      playerWin++;
-  }
-  return winner;
+  } 
+    return winner;
 }
 
 // function to play 5 rounds of the game.
 function game(){
+    alert('5 rounds of rock paper scissors is played, if you win a round you get one point, if it is a tie no points are given.')
     for(let i = 0; i <= 5; i++){
         if(i < 5){
             let userPrompt = prompt('Choose rock, paper or scissors!').toLowerCase();
@@ -78,10 +76,12 @@ function game(){
                     i--;
                 }
         }else {
-            if(computerWin < playerWin){
-                alert(`You won the game! the final score was:\nYou: ${playerWin}\nComputer: ${computerWin}`)
-            } else {
+            if(computerWin === playerWin){
+                alert(`It was a tie! the final score was:\nYou: ${playerWin}\nComputer: ${computerWin}`)
+            } else if(computerWin > playerWin) {
                 alert(`The computer won the game! the final score was:\nYou: ${playerWin}\nComputer: ${computerWin}`)
+            } else {
+                alert(`You won the game! the final score was:\nYou: ${playerWin}\nComputer: ${computerWin}`)
             }
         }
     }
