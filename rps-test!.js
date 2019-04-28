@@ -36,44 +36,44 @@ function decideWinner(user, computer) {
         return roundOutcome;
 }
 
-// variables to hold the score
+// variables to hold the score, and announce the winner
 let playerWin = 0;
 let computerWin = 0;
-const announceFinal = document.querySelector("#announceFinal");
-const announce = document.querySelector("#announce");
 
 //Function to play one round of the game and add points to the scoreboard
 function playRound(userInput, computerInput){
-    /*const playerDiv = document.querySelector("#player");*/
-    /*const computerDiv = document.querySelector("#computer");*/
     let winner = decideWinner(userInput, computerInput);
     if (winner === 1) {
-        playerWin++;
-        announce.innerText = `${userInput} beats ${computerInput} you win!`;
-    } else if (winner === 2) {
-        computerWin++;
-        announce.innerText = `${computerInput} beats ${userInput} Computer wins!`;
-    } else{
-        announce.innerText = 'It´s a tie!'; 
-    }
-    
+      playerWin++;
+  } else if (winner === 2) {
+      computerWin++;
+  } 
+    return winner;
 }
 
 // function to play 5 rounds of the game.
 function game(playerInput){
+    let announce;
     let computerOutcome = computerPlay();
-    playRound(playerInput, computerOutcome);
-    if(playerWin === 3){
-        announceFinal.innerText = `You won the game! the final score was:\nYou: ${playerWin}\nComputer: ${computerWin}`
-        playerWin = 0;
-        computerWin = 0;
-    }
-    else if(computerWin === 3){
-        announceFinal.innerText =`The computer won the game! the final score was:\nYou: ${playerWin}\nComputer: ${computerWin}`
-        playerWin = 0;
-        computerWin = 0;
-        
-    }
+    let oneRound = playRound(playerInput, computerOutcome);
+    if (oneRound === 1) {
+        announce = `${playerInput} beats ${computerOutcome} you win!`;
+    } else if (oneRound === 2) {
+        announce = `${computerOutcome} beats ${playerInput} Computer wins!`;
+    } else if (oneRound === 3){
+        announce = 'It´s a tie!';
+    } 
+    return announce;
+                
+        /*}else {
+            if(computerWin === playerWin){
+                alert(`It was a tie! the final score was:\nYou: ${playerWin}\nComputer: ${computerWin}`)
+            } else if(computerWin > playerWin) {
+                alert(`The computer won the game! the final score was:\nYou: ${playerWin}\nComputer: ${computerWin}`)
+            } else {
+                alert(`You won the game! the final score was:\nYou: ${playerWin}\nComputer: ${computerWin}`)
+            }
+        }*/
     }
     
  
@@ -87,9 +87,19 @@ document.getElementById("buttonsChoice").childNodes.forEach((button) => {
 });
 
 function ChoiceButtonEvent(e){
-    announceFinal.innerText = "";
-    game(e.target.id);
-    
+    let result = game(e.target.id);
+    //display result
+
+
+    let result = {
+        playerScore: 10,
+        compuerScore: 10,
+        Announce: () => {
+            if(playerScore > computerScore){
+                return "Player won";
+            }
+        }
+    };
 }
 
 
@@ -97,14 +107,14 @@ function ChoiceButtonEvent(e){
 
 ////TESTING
 
-/*
+
 function playRound(userInput, computerInput){
     let winner = decideWinner(userInput, computerInput);
 
     return winner;
 }
 
-function game(numberOfRounds){
+function game(playerInput){
     let result = {
         playerScore: 0,
         computerScore: 0,
@@ -117,7 +127,7 @@ function game(numberOfRounds){
         }
     };
 
-    for (let i = 0; i < numberOfRounds; i++) {
+    for (let i = 0; i < 5; i++) {
         //få fat i playerinput
 
         let computerOutcome = computerPlay();
@@ -136,7 +146,6 @@ function game(numberOfRounds){
     return result;
 }
 
-// function to decide who is the winner
 function winnerIsDecided(result, numberOfRounds){
    let breakPoint = numberOfRounds / 2;
 
@@ -162,5 +171,3 @@ function test(){
 function test2(t){
     t = 5;
 }
-
-*/
